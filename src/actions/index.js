@@ -10,5 +10,5 @@ export const showmoviequotes = (payload) => ({ type: SHOW_MOVIES_QUOTES, payload
 export const SHOW_CHARACTERS = 'SHOW_MOVIES_Characters';
 export const showcharacters = (payload) => ({ type: SHOW_CHARACTERS, payload });
 
-
-
+export const SET_MOVIE_FILTERS = 'SET_MOVIE_FILTERS';
+export const setMoviesFilters = (payload) => ({ type: SET_MOVIE_FILTERS, payload });

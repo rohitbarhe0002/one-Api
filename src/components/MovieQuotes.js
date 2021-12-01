@@ -16,40 +16,31 @@ export default function MovieQuotes() {
     useEffect(() => {
         dispatch(requestMoviesQuotes(id));
     }, []);
-    
+  
 
     return (
         <>
-
             <div className="center">
                 <h1>This is Movie Quotes</h1>
             </div><br />
-            <Table striped bordered hover variant>
+            <Table striped bordered hover variant="light">
                 <thead >
                     <tr>
-
-                        <th scope="col">Id</th>
-                        <th scope="col">name</th>
-
+                        <th scope="col">movie</th>
+                        <th scope="col">dialog</th>
+                      
                     </tr>
                 </thead>
-
                 {moviesquotes.map((Data) => (
-
-
 
                     <tbody>
                         <tr>
-
-                            <td>{Data.movie}</td>
-                            <td>{Data._Id}</td>
-                            
-
+                       <td>{Data.dialog}</td>
+                     
+                       <td>{Data.movie}</td>
                         </tr>
                     </tbody>
-
-
-                ))}
+                 ))}
             </Table>
         </>
      

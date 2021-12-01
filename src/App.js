@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Nav className="Links" variant="tabs" defaultActiveKey="/">
           <Nav.Item>
-            <Nav.Link  href="/Movies">Movies</Nav.Link>
+            <Nav.Link href="/Movies">Movies</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/MovieQuotes/:Id">Movies Quotes</Nav.Link>
@@ -29,7 +29,6 @@ function App() {
 
 
         </Nav>
-
         <Route exact path="/" />
         <Route path="/Movies" component={Movie} />
         <Route path="/Books" component={Books} />

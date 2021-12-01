@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {  showbooks, showcharacters, showmoviequotes } from '../actions';
+import {  setMoviesFilters, showbooks, showcharacters, showmoviequotes } from '../actions';
 import { showmovies } from '../actions';
 
 const client = axios.create({
@@ -18,20 +18,28 @@ export const requestBooks = () => async (dispatch) => {
   }
 }
 
-export const requestMovies = () => async (dispatch) => {
+export const requestMovies = (prevFilters) => async (dispatch) => {
+
     try {
-      const response = await client.get('/movie');
-      dispatch(showmovies(response.data.docs));
-    } catch (err) {
-      // logs the error whatever error occured in try block
-      console.log(err);
-    }
-  }
+      const params = {
+        budget: prevFilters.budgetInMillions,
+        minutes:prevFilters.runtimeInMinutes,
+        sort: `${prevFilters.orderBy}:${prevFilters.order}`
+      }
+ 
+  const { data: { docs, ...filters } } = await client.get('/movie', { params });
+  dispatch(showmovies( docs ));
+  dispatch(setMoviesFilters(filters));
+} catch (err) {
+  // logs the error whatever error occured in try block
+  console.log(err);
+}
+}
 
   export const requestMoviesQuotes = (id) => async (dispatch) => {
     console.log(id);
     try {
-      const response = await client.get(` /movie/${id}/quote`);
+      const response = await client.get(`/movie/${id}/quote`);
       dispatch(showmoviequotes(response.data.docs));
     } catch (err) {
       // logs the error whatever error occured in try block
